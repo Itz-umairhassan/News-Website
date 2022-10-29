@@ -4,8 +4,8 @@ import NewsItem from "./NewsItem";
 import Proptypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroller";
 export class NewsSection extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         console.log("Contrsuctor is being called")
         this.state = {
             articles: [],
@@ -14,6 +14,7 @@ export class NewsSection extends Component {
             totalResults: 0
 
         }
+        document.title=`${this.props.category} - News`
     }
 
     static defaultProps = {
@@ -36,30 +37,6 @@ export class NewsSection extends Component {
         this.setState({ articles: data.articles })
     }
 
-    // async clickhandle(condition) {
-
-    //     let links, page_value;
-
-    //     this.setState({ loading: true })
-
-    //     if (condition) {
-    //         links = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=e89fba0122034c57be5b142947390733&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-    //         page_value = this.state.page + 1;
-    //     } else {
-    //         links = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=e89fba0122034c57be5b142947390733&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
-    //         page_value = this.state.page - 1;
-    //     }
-    //     const resp = await fetch(links);
-
-    //     const data = await resp.json();
-    //     console.log(data)
-    //     this.setState({
-    //         page: page_value,
-    //         articles: data.articles,
-    //         totalResults: data.totalResults,
-    //         loading: false
-    //     })
-    // }
 
     fetchMoredata = async () => {
         console.log("Hello there")
